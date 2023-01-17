@@ -1,8 +1,13 @@
 import { Button, Grid, TextField } from "@mui/material";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
+import { ProductMutation } from "../../../types";
 
-const ProductForm = () => {
-  const [state, setState] = useState({
+interface Props {
+  onSubmit: (mutation: ProductMutation) => void;
+}
+
+const ProductForm: FC<Props> = ({ onSubmit }) => {
+  const [state, setState] = useState<ProductMutation>({
     title: "",
     price: "",
     description: "",
@@ -10,6 +15,7 @@ const ProductForm = () => {
 
   const submitFormHandler = (e: FormEvent) => {
     e.preventDefault();
+    onSubmit(state);
   };
 
   const inputChangeHander = (e: ChangeEvent<HTMLInputElement>) => {
