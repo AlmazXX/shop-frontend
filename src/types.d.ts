@@ -9,4 +9,5 @@ export interface ProductMutation {
   title: string;
   description: string;
   price: string;
+  image: File | null;
 }
